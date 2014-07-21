@@ -1,32 +1,41 @@
 
-Build ruby rpm on Docker container
-----
+# Build ruby-2.1.x rpm on Docker container
 
-1. Start the guest machine
+## Requirements
 
-```bash
-$ vagrant up
-$ vagrant ssh
-```
+* [VirtualBox](http://www.virtualbox.org/)
+* [Vagrant](http://www.vagrantup.com/)
 
-2. Build docker container
 
-```
-$ cd /vagrant
-$ sudo docker build -t <USERNAME>/rubybuild .
-```
+## How to build rpm
 
-3. rpmbuild in the container
+1. Clone this project
+    ```bash
+    $ git clone https://github.com/wadahiro/ruby-rpmbuild-container.git
+    ```
 
-```bash
-$ sudo docker run --rm -it <CONTAINER> /bin/sh ./rubybuild.sh
-```
+2. Start the guest machine
+    ```bash
+    $ cd ruby-rpmbuild-container
+    $ vagrant up
+    $ vagrant ssh
+    ```
 
-4. check the rpm file on virtual machine
+3. Build docker container
+    ```
+    $ cd /tmp/rpmbuild
+    $ sudo docker build -t <USERNAME>/rubybuild .
+    ```
 
-```bash
-$ ls *.rpm
-ruby-2.1.2-2.el6.x86_64.rpm
-```
+4. rpmbuild in the container
+    ```bash
+    $ sudo docker run --rm -v $PWD:/shared:rw -it <CONTAINER_ID> /bin/sh ./rubybuild.sh
+    ```
+
+5. check the rpm file on virtual machine
+    ```bash
+    $ ls *.rpm
+    ruby-2.1.2-2.el6.x86_64.rpm
+    ```
 
 Enjoy!
