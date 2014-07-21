@@ -26,7 +26,7 @@ $ sudo docker run --rm -it <CONTAINER> /bin/sh ./rubybuild.sh
 
 ```bash
 $ ls *.rpm
-ruby-2.0.0p481-2.el6.x86_64.rpm
+ruby-2.1.2-2.el6.x86_64.rpm
 ```
 
 Enjoy!
